@@ -4,6 +4,7 @@
 
 * [ ] DevContainerの設定
 * [ ] Prismaの導入
+- [ ] ESLint、Prettier
 * [ ] CRUD画面作成
     * [ ] バリデーション
 * [ ] テスト
