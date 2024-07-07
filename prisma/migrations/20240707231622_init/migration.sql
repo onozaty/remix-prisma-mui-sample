@@ -6,7 +6,7 @@ CREATE TABLE "customers" (
     "email" TEXT NOT NULL,
     "phone" TEXT,
     "address" TEXT,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT statement_timestamp(),
 
     CONSTRAINT "customers_pkey" PRIMARY KEY ("customer_id")
 );
@@ -17,7 +17,7 @@ CREATE TABLE "products" (
     "name" TEXT NOT NULL,
     "description" TEXT,
     "price" DOUBLE PRECISION NOT NULL,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT statement_timestamp(),
 
     CONSTRAINT "products_pkey" PRIMARY KEY ("product_id")
 );
@@ -29,7 +29,7 @@ CREATE TABLE "sales" (
     "product_id" INTEGER NOT NULL,
     "quantity" INTEGER NOT NULL,
     "total_price" DOUBLE PRECISION NOT NULL,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT statement_timestamp(),
 
     CONSTRAINT "sales_pkey" PRIMARY KEY ("sale_id")
 );
