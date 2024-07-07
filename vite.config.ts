@@ -13,4 +13,7 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  server: {
+    host: '127.0.0.1'
+  },
 });
