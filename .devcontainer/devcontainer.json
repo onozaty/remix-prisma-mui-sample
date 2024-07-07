@@ -3,5 +3,12 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-	"remoteUser": "node"
+	"remoteUser": "node",
+	"customizations": {
+        "vscode": {
+            "extensions": [
+                "Prisma.prisma"
+            ]
+        }
+    }
 }
