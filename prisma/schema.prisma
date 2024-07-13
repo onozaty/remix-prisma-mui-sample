@@ -9,11 +9,8 @@ datasource db {
 
 model Customer {
   customerId Int      @id @default(autoincrement()) @map("customer_id")
-  firstName  String   @map("first_name")
-  lastName   String   @map("last_name")
+  name       String
   email      String   @unique
-  phone      String?
-  address    String?
   createdAt  DateTime @default(dbgenerated("statement_timestamp()")) @map("created_at") @db.Timestamptz()
   sales      Sale[]
 

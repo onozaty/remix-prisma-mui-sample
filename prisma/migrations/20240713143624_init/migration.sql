@@ -1,11 +1,8 @@
 -- CreateTable
 CREATE TABLE "customers" (
     "customer_id" SERIAL NOT NULL,
-    "first_name" TEXT NOT NULL,
-    "last_name" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "phone" TEXT,
-    "address" TEXT,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT statement_timestamp(),
 
     CONSTRAINT "customers_pkey" PRIMARY KEY ("customer_id")
