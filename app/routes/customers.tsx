@@ -1,3 +1,15 @@
+import {
+  Box,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import { json, Link, useLoaderData } from "@remix-run/react";
 import { getCustomers } from "../services/customer.server";
 
@@ -10,19 +22,33 @@ export default function Customers() {
   const customers = useLoaderData<typeof loader>();
 
   return (
-    <div>
-      <h1>Customers</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        {customers.map((customer) => (
-          <li key={customer.customerId}>
-            <p>Name: {customer.name}</p>
-            <p>Email: {customer.email}</p>
-          </li>
-        ))}
-      </ul>
-      <Link to="/customers/new" className="text-blue-700 underline">
-        New Customer
-      </Link>
-    </div>
+    <Box>
+      <Typography variant="h5">Customers</Typography>
+      <Box justifyContent="flex-end" display="flex" sx={{ mb: 1 }}>
+        <Button component={Link} to="/customers/new" variant="contained">
+          New Customer
+        </Button>
+      </Box>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Email</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {customers.map((customer) => (
+              <TableRow key={customer.customerId}>
+                <TableCell component="th" scope="row">
+                  {customer.name}
+                </TableCell>
+                <TableCell>{customer.email}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 }

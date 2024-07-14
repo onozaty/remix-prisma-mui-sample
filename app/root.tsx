@@ -1,11 +1,23 @@
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import {
+  AppBar,
+  Box,
+  Container,
+  CssBaseline,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import {
+  Link,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import "./tailwind.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -26,5 +38,28 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <CssBaseline />
+      <Container>
+        <Box>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography
+                variant="h6"
+                component={Link}
+                to="/"
+                sx={{ color: "inherit", textDecoration: "none" }}
+              >
+                Remix + Prisma Sample App
+              </Typography>
+            </Toolbar>
+          </AppBar>
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <Outlet />
+        </Box>
+      </Container>
+    </>
+  );
 }

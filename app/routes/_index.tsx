@@ -1,3 +1,10 @@
+import {
+  Box,
+  List,
+  ListItem,
+  Link as MuiLink,
+  Typography,
+} from "@mui/material";
 import type { MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 
@@ -10,15 +17,15 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Remix + Prisma Sample App</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <Link to="/customers" className="text-blue-700 underline">
+    <Box>
+      <Typography variant="h5">Top</Typography>
+      <List>
+        <ListItem>
+          <MuiLink component={Link} to="/customers" underline="hover">
             Customers
-          </Link>
-        </li>
-      </ul>
-    </div>
+          </MuiLink>
+        </ListItem>
+      </List>
+    </Box>
   );
 }
