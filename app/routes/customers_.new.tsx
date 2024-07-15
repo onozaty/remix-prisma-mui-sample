@@ -26,13 +26,13 @@ export default function Component() {
         <Form method="post">
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <TextField label="Name" name="name" />
+              <TextField label="Name" name="name" fullWidth />
             </Grid>
             <Grid item xs={6}>
-              <TextField label="Email" name="email" />
+              <TextField label="Email" name="email" fullWidth />
             </Grid>
           </Grid>
-          <Box justifyContent="flex-end" display="flex">
+          <Box sx={{ justifyContent: "flex-end", display: "flex", mt: 1 }}>
             <Button type="submit" variant="contained">
               Create
             </Button>

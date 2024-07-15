@@ -24,7 +24,7 @@ export default function Customers() {
   return (
     <Box>
       <Typography variant="h5">Customers</Typography>
-      <Box justifyContent="flex-end" display="flex" sx={{ mb: 1 }}>
+      <Box sx={{ justifyContent: "flex-end", display: "flex", mb: 1 }}>
         <Button component={Link} to="/customers/new" variant="contained">
           New Customer
         </Button>
