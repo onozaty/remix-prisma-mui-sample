@@ -10,3 +10,7 @@ export const createCustomer = async (
 ) => {
   return await prisma.customer.create({ data: customer });
 };
+
+export const deleteCustomer = async (customerId: number) => {
+  return await prisma.customer.delete({ where: { customerId: customerId } });
+};
