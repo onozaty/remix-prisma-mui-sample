@@ -1,6 +1,6 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { Form, json, redirect, useLoaderData } from "@remix-run/react";
+import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
+import { Form, redirect, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { getCustomer, updateCustomer } from "../services/customer.server";
 

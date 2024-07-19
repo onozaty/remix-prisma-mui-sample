@@ -11,8 +11,8 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { ActionFunctionArgs } from "@remix-run/node";
-import { Form, json, Link, redirect, useLoaderData } from "@remix-run/react";
+import { ActionFunctionArgs, json } from "@remix-run/node";
+import { Form, Link, redirect, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { deleteCustomer, getCustomers } from "../services/customer.server";
 

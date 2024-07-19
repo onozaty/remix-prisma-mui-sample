@@ -1,12 +1,10 @@
-import createCache from "@emotion/cache";
-import { CacheProvider } from "@emotion/react";
+import { CacheProvider, ThemeProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
 import { RemixBrowser } from "@remix-run/react";
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
-
-function createEmotionCache() {
-  return createCache({ key: "css" });
-}
+import { createEmotionCache } from "./emotion.cache";
+import { theme } from "./theme";
 
 const cache = createEmotionCache();
 
@@ -15,7 +13,10 @@ startTransition(() => {
     document,
     <StrictMode>
       <CacheProvider value={cache}>
-        <RemixBrowser />
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <RemixBrowser />
+        </ThemeProvider>
       </CacheProvider>
     </StrictMode>,
   );

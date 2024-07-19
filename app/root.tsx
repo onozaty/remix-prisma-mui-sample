@@ -2,14 +2,7 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import {
-  AppBar,
-  Box,
-  Container,
-  CssBaseline,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Box, Container, Toolbar, Typography } from "@mui/material";
 import {
   Link,
   Links,
@@ -40,7 +33,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <>
-      <CssBaseline />
       <Container>
         <Box>
           <AppBar position="static">
