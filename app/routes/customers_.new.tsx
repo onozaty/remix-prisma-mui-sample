@@ -18,7 +18,7 @@ export async function action({ request }: ActionFunctionArgs) {
   return redirect("/customers");
 }
 
-export default function Component() {
+export default function NewCustomer() {
   return (
     <Box>
       <Typography variant="h5">New Customer</Typography>

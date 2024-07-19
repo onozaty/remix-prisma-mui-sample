@@ -1,4 +1,4 @@
-import { Delete } from "@mui/icons-material";
+import { Delete, Edit } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -59,12 +59,16 @@ export default function Customers() {
                 <TableCell>{customer.name}</TableCell>
                 <TableCell>{customer.email}</TableCell>
                 <TableCell>
-                  <Form
+                  <Box
+                    component={Form}
                     method="delete"
                     onSubmit={(event) => {
                       if (!confirm("Do you want to delete it?")) {
                         event.preventDefault();
                       }
+                    }}
+                    sx={{
+                      display: "inline-block",
                     }}
                   >
                     <input
@@ -79,7 +83,16 @@ export default function Customers() {
                     >
                       Delete
                     </Button>
-                  </Form>
+                  </Box>
+                  <Button
+                    component={Link}
+                    to={`/customers/${customer.customerId}/edit`}
+                    variant="contained"
+                    startIcon={<Edit />}
+                    sx={{ marginLeft: 2 }}
+                  >
+                    Edit
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
