@@ -1,4 +1,9 @@
 /**
+ * Based on the code below.
+ * https://github.com/prisma/prisma/issues/8703#issuecomment-1614360386
+ */
+
+/**
  * This is a custom generator for Prisma that generates comments for all models fields and
  *  handles creating a migration file for them when comments change.
  *
@@ -37,6 +42,15 @@ async function generateModelComment(model: any): Promise<string[]> {
   const modelName = model.dbName ?? model.name;
 
   const commentStatements: string[] = [];
+
+  if (model.documentation) {
+    debugLog(`Generating comment for ${modelName}...`);
+
+    const escapedComment = model.documentation?.replace(/'/g, "''") ?? "";
+
+    const commentTemplate = `COMMENT ON TABLE "${modelName}" IS '${escapedComment}';`;
+    commentStatements.push(commentTemplate);
+  }
 
   model.fields.forEach((field: any) => {
     if (!field.documentation) {
