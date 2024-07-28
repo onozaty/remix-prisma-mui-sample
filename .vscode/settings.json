@@ -35,5 +35,7 @@
   },
   "editor.quickSuggestions": {
     "strings": "on"
-  }
+  },
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2
 }
