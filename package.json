@@ -10,7 +10,7 @@
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc",
-    "db:migrate": "prisma-case-format --file ./prisma/schema.prisma && prisma migrate dev && prisma generate",
+    "db:migrate": "prisma-case-format --file ./prisma/schema.prisma && prisma migrate dev && prisma generate && npm run db:deploy",
     "db:reset": "prisma migrate reset",
     "db:deploy": "prisma migrate deploy",
     "test:e2e": "playwright test",
@@ -53,6 +53,7 @@
     "prettier": "^3.3.2",
     "prisma": "^5.16.1",
     "prisma-case-format": "^2.2.1",
+    "tsx": "^4.16.2",
     "typescript": "^5.1.6",
     "vite": "^5.1.0",
     "vite-tsconfig-paths": "^4.2.1"
