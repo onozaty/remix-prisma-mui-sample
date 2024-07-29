@@ -4,6 +4,7 @@ generator client {
 
 generator comments {
   provider = "tsx prisma/comments-generator.ts"
+  output   = "migrations"
 }
 
 datasource db {
