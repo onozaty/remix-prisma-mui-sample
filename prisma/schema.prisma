@@ -3,8 +3,9 @@ generator client {
 }
 
 generator comments {
-  provider = "tsx prisma/comments-generator.ts"
-  output   = "migrations"
+  provider                  = "prisma-db-comments-generator"
+  ignorePattern             = "_view$"
+  includeEnumInFeildComment = true
 }
 
 datasource db {
