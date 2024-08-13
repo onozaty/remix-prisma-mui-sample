@@ -12,9 +12,7 @@
     "typecheck": "tsc",
     "db:migrate": "prisma-case-format --file ./prisma/schema.prisma && prisma migrate dev && prisma generate && npm run db:deploy",
     "db:reset": "prisma migrate reset",
-    "db:deploy": "prisma migrate deploy",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "db:deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@conform-to/react": "^1.1.5",
@@ -38,9 +36,7 @@
   },
   "devDependencies": {
     "@onozaty/prisma-db-comments-generator": "^1.0.1",
-    "@playwright/test": "^1.45.3",
     "@remix-run/dev": "^2.10.2",
-    "@types/node": "^20.14.11",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
