@@ -12,7 +12,8 @@
     "typecheck": "tsc",
     "db:migrate": "prisma-case-format --file ./prisma/schema.prisma && prisma migrate dev && prisma generate && npm run db:deploy",
     "db:reset": "prisma migrate reset",
-    "db:deploy": "prisma migrate deploy"
+    "db:deploy": "prisma migrate deploy",
+    "test": "vitest run"
   },
   "dependencies": {
     "@conform-to/react": "^1.1.5",
@@ -53,7 +54,8 @@
     "tsx": "^4.16.2",
     "typescript": "^5.1.6",
     "vite": "^5.1.0",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "^2.0.5"
   },
   "engines": {
     "node": ">=20.0.0"
