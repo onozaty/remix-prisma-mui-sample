@@ -5,8 +5,8 @@
 - [x] DevContainerの設定
 - [x] Prismaの導入
 - [x] ESLint、Prettier
-- [ ] CRUD画面作成
-    - [ ] バリデーション
+- [x] CRUD画面作成
+    - [x] バリデーション
 - [ ] テスト
     - [ ] ユニットテスト
     - [ ] e2e
