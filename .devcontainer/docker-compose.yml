@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../..:/workspaces:cached
-      - app-node-modules:/workspaces/app/node_modules
+      - app-node-modules:/workspaces/remix-prisma/node_modules
     command: sleep infinity
     network_mode: service:db
   db:

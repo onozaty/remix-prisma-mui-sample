@@ -5,3 +5,7 @@ RUN apt-get update && apt-get install -y \
 
 # playwright
 RUN apt-get update && npx playwright install-deps
+
+USER node
+WORKDIR /workspaces
+RUN mkdir -p remix-prisma/node_modules
