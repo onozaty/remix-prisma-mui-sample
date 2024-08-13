@@ -15,5 +15,12 @@ export default defineConfig({
   ],
   server: {
     host: "127.0.0.1",
+    warmup: {
+      clientFiles: [
+        "./app/entry.client.tsx",
+        "./app/root.tsx",
+        "./app/routes/**/*",
+      ],
+    },
   },
 });
