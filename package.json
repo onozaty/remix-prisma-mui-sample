@@ -13,7 +13,8 @@
     "db:migrate": "prisma-case-format --file ./prisma/schema.prisma && prisma migrate dev && prisma generate && npm run db:deploy",
     "db:reset": "prisma migrate reset",
     "db:deploy": "prisma migrate deploy",
-    "test": "vitest run"
+    "test": "dotenv -e .env.test -- vitest run",
+    "test:db:reset": "dotenv -e .env.test -- prisma migrate reset -f"
   },
   "dependencies": {
     "@conform-to/react": "^1.1.5",
@@ -42,6 +43,7 @@
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^8.38.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.28.1",
