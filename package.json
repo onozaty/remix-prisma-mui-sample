@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@onozaty/prisma-db-comments-generator": "^1.0.1",
+    "@quramy/prisma-fabbrica": "^2.2.1",
     "@remix-run/dev": "^2.10.2",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",

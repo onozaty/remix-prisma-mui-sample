@@ -8,6 +8,12 @@ generator comments {
   includeEnumInFeildComment = true
 }
 
+generator fabbrica {
+  provider = "prisma-fabbrica"
+  output   = "../test/__generated__/fabbrica"
+  tsconfig = "../tsconfig.json"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
