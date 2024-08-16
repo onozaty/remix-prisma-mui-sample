@@ -1,3 +1,4 @@
+import { getCustomer, updateCustomer } from "#app/services/customer.server";
 import { getFieldsetProps, getFormProps, useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
@@ -5,7 +6,6 @@ import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
 import { Form, redirect, useActionData, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { z } from "zod";
-import { getCustomer, updateCustomer } from "../services/customer.server";
 
 const CustomerSchema = z.object({
   name: z.string(),

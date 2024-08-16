@@ -1,3 +1,4 @@
+import { deleteCustomer, getCustomers } from "#app/services/customer.server";
 import { Delete, Edit } from "@mui/icons-material";
 import {
   Box,
@@ -14,7 +15,6 @@ import {
 import { ActionFunctionArgs, json } from "@remix-run/node";
 import { Form, Link, redirect, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
-import { deleteCustomer, getCustomers } from "../services/customer.server";
 
 export const loader = async () => {
   const customers = await getCustomers();

@@ -1,10 +1,10 @@
+import { createCustomer } from "#app/services/customer.server";
 import { getFieldsetProps, getFormProps, useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { ActionFunctionArgs } from "@remix-run/node";
 import { Form, json, redirect, useActionData } from "@remix-run/react";
 import { z } from "zod";
-import { createCustomer } from "../services/customer.server";
 
 const CustomerSchema = z.object({
   name: z.string(),

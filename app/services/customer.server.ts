@@ -1,5 +1,5 @@
+import { prisma } from "#app/utils/db.server";
 import { Customer } from "@prisma/client";
-import { prisma } from "../utils/db.server";
 
 export const getCustomers = async () => {
   return await prisma.customer.findMany();
