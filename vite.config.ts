@@ -26,5 +26,8 @@ export default defineConfig({
   },
   test: {
     globals: true,
+    coverage: {
+      include: ["app/**/*.{ts,tsx}"],
+    },
   },
 });

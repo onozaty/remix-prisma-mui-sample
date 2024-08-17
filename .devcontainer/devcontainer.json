@@ -10,7 +10,8 @@
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
         "Prisma.prisma",
-        "vitest.explorer"
+        "vitest.explorer",
+        "peakchen90.open-html-in-browser"
       ]
     }
   }
