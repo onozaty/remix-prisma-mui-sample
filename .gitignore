@@ -2,5 +2,5 @@ node_modules
 
 /.cache
 /build
-/tests/__generated__/
+/test/__generated__/
 /coverage

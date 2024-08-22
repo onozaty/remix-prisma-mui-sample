@@ -5,7 +5,7 @@ import {
   getCustomers,
   updateCustomer,
 } from "#app/services/customer.server";
-import { customerFactory, resetDb } from "#tests/test-utils";
+import { customerFactory, resetDb } from "#test/test-utils";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 beforeEach(async () => {

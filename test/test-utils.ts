@@ -2,7 +2,7 @@ import { prisma } from "#app/utils/db.server";
 import {
   defineCustomerFactory,
   initialize,
-} from "#tests/__generated__/fabbrica";
+} from "#test/__generated__/fabbrica";
 
 export const resetDb = async () => {
   const tablenames = await prisma.$queryRaw<

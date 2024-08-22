@@ -10,7 +10,7 @@ generator comments {
 
 generator fabbrica {
   provider = "prisma-fabbrica"
-  output   = "../tests/__generated__/fabbrica"
+  output   = "../test/__generated__/fabbrica"
   tsconfig = "../tsconfig.json"
 }
 
