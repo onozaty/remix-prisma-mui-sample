@@ -1,4 +1,4 @@
-import Index, { meta } from "#app/routes/_index";
+import Index, { meta } from "#app/routes";
 import { createRemixStub } from "@remix-run/testing";
 import { render, screen } from "@testing-library/react";
 
