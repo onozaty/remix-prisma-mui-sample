@@ -26,6 +26,7 @@ export default defineConfig({
         "./app/entry.client.tsx",
         "./app/root.tsx",
         "./app/routes/**/*",
+        "!./app/routes/**/*.test.{ts,tsx}",
       ],
     },
   },
