@@ -1,4 +1,4 @@
-import Customers, { action, loader } from "#app/routes/customers";
+import Customers, { action, loader } from "#app/routes/customers+/index";
 import { customerFactory, resetDb } from "#test/test-utils";
 import { createRemixStub } from "@remix-run/testing";
 import { render, screen } from "@testing-library/react";
