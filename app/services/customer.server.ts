@@ -12,13 +12,13 @@ export const getCustomer = async (customerId: number) => {
 };
 
 export const createCustomer = async (
-  customer: Pick<Customer, "name" | "email">,
+  customer: Pick<Customer, "name" | "email" | "type">,
 ) => {
   return await prisma.customer.create({ data: customer });
 };
 
 export const updateCustomer = async (
-  customer: Pick<Customer, "customerId" | "name" | "email">,
+  customer: Pick<Customer, "customerId" | "name" | "email" | "type">,
 ) => {
   return await prisma.customer.update({
     where: { customerId: customer.customerId },

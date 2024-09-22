@@ -22,6 +22,11 @@
       },
       {
         "tableName": "customers",
+        "columnName": "type",
+        "comment": "Customer Type\nenum: customer_types(PERSONAL, CORPORATE)"
+      },
+      {
+        "tableName": "customers",
         "columnName": "created_at",
         "comment": ""
       }

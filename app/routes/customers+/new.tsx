@@ -1,15 +1,40 @@
 import { createCustomer } from "#app/services/customer.server";
-import { getFieldsetProps, getFormProps, useForm } from "@conform-to/react";
+import {
+  getFieldsetProps,
+  getFormProps,
+  useForm,
+  useInputControl,
+} from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  MenuItem,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { CustomerType } from "@prisma/client";
 import { ActionFunctionArgs } from "@remix-run/node";
 import { Form, json, redirect, useActionData } from "@remix-run/react";
 import { z } from "zod";
 
-const CustomerSchema = z.object({
+export const CustomerSchema = z.object({
   name: z.string(),
   email: z.string().email(),
+  type: z.nativeEnum(CustomerType),
 });
+
+export const CustomerTypeItems: { value: CustomerType; label: string }[] = [
+  {
+    value: "PERSONAL",
+    label: "Personal",
+  },
+  {
+    value: "CORPORATE",
+    label: "Corporate",
+  },
+];
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
@@ -17,9 +42,9 @@ export async function action({ request }: ActionFunctionArgs) {
   if (submission.status !== "success") {
     return json(submission.reply());
   }
-  const { name, email } = submission.value;
+  const { name, email, type } = submission.value;
 
-  await createCustomer({ name, email });
+  await createCustomer({ name, email, type });
 
   return redirect("/customers");
 }
@@ -39,6 +64,8 @@ export default function NewCustomer() {
     shouldValidate: "onBlur",
     shouldRevalidate: "onInput",
   });
+
+  const typeSelect = useInputControl(fields.type);
 
   return (
     <Box>
@@ -63,6 +90,24 @@ export default function NewCustomer() {
                 helperText={fields.email.errors}
                 {...getFieldsetProps(fields.email)}
               />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="Type"
+                select
+                fullWidth
+                onChange={(event) => typeSelect.change(event.target.value)}
+                defaultValue=""
+                error={(fields.email.errors?.length ?? 0) > 0}
+                helperText={fields.email.errors}
+                {...getFieldsetProps(fields.type)}
+              >
+                {CustomerTypeItems.map((item) => (
+                  <MenuItem key={item.value} value={item.value}>
+                    {item.label}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Grid>
           </Grid>
           <Box sx={{ justifyContent: "flex-end", display: "flex", mt: 1 }}>

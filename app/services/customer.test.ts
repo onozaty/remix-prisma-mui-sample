@@ -6,6 +6,7 @@ import {
   updateCustomer,
 } from "#app/services/customer.server";
 import { customerFactory, resetDb } from "#test/test-utils";
+import { CustomerType } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 beforeEach(async () => {
@@ -74,9 +75,10 @@ describe("createCustomer", () => {
     // ARRANGE
     const name = "あいうえお";
     const email = "test@example.com";
+    const type: CustomerType = "CORPORATE";
 
     // ACT
-    const created = await createCustomer({ name, email });
+    const created = await createCustomer({ name, email, type });
 
     // ASSERT
     const customer = await getCustomer(created.customerId);
@@ -94,10 +96,11 @@ describe("createCustomer", () => {
     const other = await customerFactory.create();
     const name = "あいうえお";
     const email = other.email; // 同じemail
+    const type: CustomerType = "CORPORATE";
 
     try {
       // ACT
-      await createCustomer({ name, email });
+      await createCustomer({ name, email, type });
       throw new Error("エラーがスローされなかった");
     } catch (e) {
       expect(e).toBeInstanceOf(PrismaClientKnownRequestError);
@@ -113,12 +116,14 @@ describe("updateCustomer", () => {
     const target = await customerFactory.create();
     const name = "あいうえお";
     const email = "test@example.com";
+    const type: CustomerType = "CORPORATE";
 
     // ACT
     const updated = await updateCustomer({
       customerId: target.customerId,
       name,
       email,
+      type,
     });
 
     // ASSERT
@@ -138,10 +143,16 @@ describe("updateCustomer", () => {
     const other = await customerFactory.create();
     const name = "あいうえお";
     const email = other.email; // 同じemail
+    const type: CustomerType = "CORPORATE";
 
     // ACT
     try {
-      await updateCustomer({ customerId: target.customerId, name, email });
+      await updateCustomer({
+        customerId: target.customerId,
+        name,
+        email,
+        type,
+      });
       throw new Error("エラーがスローされなかった");
     } catch (e) {
       // ASSERT
@@ -155,10 +166,11 @@ describe("updateCustomer", () => {
     // ARRANGE
     const name = "あいうえお";
     const email = "test@example.com";
+    const type: CustomerType = "CORPORATE";
 
     try {
       // ACT
-      await updateCustomer({ customerId: 1, name, email });
+      await updateCustomer({ customerId: 1, name, email, type });
       throw new Error("エラーがスローされなかった");
     } catch (e) {
       expect(e).toBeInstanceOf(PrismaClientKnownRequestError);

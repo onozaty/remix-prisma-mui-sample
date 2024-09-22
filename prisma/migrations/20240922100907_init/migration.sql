@@ -1,8 +1,12 @@
+-- CreateEnum
+CREATE TYPE "customer_types" AS ENUM ('PERSONAL', 'CORPORATE');
+
 -- CreateTable
 CREATE TABLE "customers" (
     "customer_id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "type" "customer_types" NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT statement_timestamp(),
 
     CONSTRAINT "customers_pkey" PRIMARY KEY ("customer_id")

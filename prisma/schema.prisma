@@ -19,15 +19,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum CustomerType {
+  PERSONAL
+  CORPORATE
+
+  @@map("customer_types")
+}
+
 /// Customer
 model Customer {
   /// Customer ID
-  customerId Int      @id @default(autoincrement()) @map("customer_id")
+  customerId Int          @id @default(autoincrement()) @map("customer_id")
   /// Customer Name
   name       String
   /// e-mail
-  email      String   @unique
-  createdAt  DateTime @default(dbgenerated("statement_timestamp()")) @map("created_at") @db.Timestamptz()
+  email      String       @unique
+  /// Customer Type
+  type       CustomerType
+  createdAt  DateTime     @default(dbgenerated("statement_timestamp()")) @map("created_at") @db.Timestamptz()
   sales      Sale[]
 
   @@map("customers")

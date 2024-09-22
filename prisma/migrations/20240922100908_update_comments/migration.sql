@@ -5,6 +5,7 @@ COMMENT ON TABLE "customers" IS 'Customer';
 COMMENT ON COLUMN "customers"."customer_id" IS 'Customer ID';
 COMMENT ON COLUMN "customers"."name" IS 'Customer Name';
 COMMENT ON COLUMN "customers"."email" IS 'e-mail';
+COMMENT ON COLUMN "customers"."type" IS E'Customer Type\nenum: customer_types(PERSONAL, CORPORATE)';
 
 -- products comments
 COMMENT ON TABLE "products" IS 'Product';
