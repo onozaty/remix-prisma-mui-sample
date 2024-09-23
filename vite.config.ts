@@ -1,7 +1,16 @@
 import { vitePlugin as remix } from "@remix-run/dev";
+import { createRequire } from "module";
+import path from "path";
 import { flatRoutes } from "remix-flat-routes";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+
+// https://github.com/prisma/prisma/issues/12504#issuecomment-1599452566
+const { resolve } = createRequire(import.meta.url);
+const prismaClient = `prisma${path.sep}client`;
+const prismaClientIndexBrowser = resolve(
+  "@prisma/client/index-browser",
+).replace(`@${prismaClient}`, `.${prismaClient}`);
 
 export default defineConfig({
   plugins: [
@@ -28,6 +37,14 @@ export default defineConfig({
         "./app/routes/**/*",
         "!./app/routes/**/*.test.{ts,tsx}",
       ],
+    },
+  },
+  resolve: {
+    alias: {
+      ".prisma/client/index-browser": path.relative(
+        __dirname,
+        prismaClientIndexBrowser,
+      ),
     },
   },
 });
