@@ -87,6 +87,7 @@ describe("createCustomer", () => {
       customerId: expect.anything(),
       name,
       email,
+      type,
       createdAt: expect.anything(),
     });
   });
@@ -133,6 +134,7 @@ describe("updateCustomer", () => {
       customerId: expect.anything(),
       name,
       email,
+      type,
       createdAt: expect.anything(),
     });
   });
