@@ -28,6 +28,9 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  ssr: {
+    noExternal: [/^@mui\//],
+  },
   server: {
     host: "127.0.0.1",
     warmup: {
