@@ -1,14 +1,12 @@
 import { PassThrough } from "node:stream";
 
-import { CacheProvider, ThemeProvider } from "@emotion/react";
+import { MuiProvider } from "#app/mui.provider";
 import { CssBaseline } from "@mui/material";
 import type { AppLoadContext, EntryContext } from "@remix-run/node";
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
-import { createEmotionCache } from "./emotion.cache";
-import { theme } from "./theme";
 
 const ABORT_DELAY = 5_000;
 
@@ -93,21 +91,17 @@ function handleBrowserRequest(
   responseHeaders: Headers,
   remixContext: EntryContext,
 ) {
-  const cache = createEmotionCache();
-
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
-      <CacheProvider value={cache}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <RemixServer
-            context={remixContext}
-            url={request.url}
-            abortDelay={ABORT_DELAY}
-          />
-        </ThemeProvider>
-      </CacheProvider>,
+      <MuiProvider>
+        <CssBaseline />
+        <RemixServer
+          context={remixContext}
+          url={request.url}
+          abortDelay={ABORT_DELAY}
+        />
+      </MuiProvider>,
       {
         onShellReady() {
           shellRendered = true;
