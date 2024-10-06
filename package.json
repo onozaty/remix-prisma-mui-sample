@@ -8,6 +8,7 @@
     "dev": "remix vite:dev",
     "prd": "npm run build && npm run start",
     "format": "prettier --write \"app/**/*.*\"",
+    "check": "npm run typecheck && npm run lint",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc",
