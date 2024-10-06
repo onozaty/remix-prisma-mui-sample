@@ -30,6 +30,9 @@ export default defineConfig({
   ],
   server: {
     host: "127.0.0.1",
+    hmr: {
+      clientPort: 24678,
+    },
     warmup: {
       clientFiles: [
         "./app/entry.client.tsx",

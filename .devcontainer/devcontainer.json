@@ -14,5 +14,6 @@
         "peakchen90.open-html-in-browser"
       ]
     }
-  }
+  },
+  "forwardPorts": [24678]
 }
