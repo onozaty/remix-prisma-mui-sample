@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["./server.ts"],
+  "compilerOptions": {
+    "lib": [],
+    "types": [],
+    "outDir": "./build/runner",
+    "noEmit": false
+  }
+}
