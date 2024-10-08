@@ -1,17 +1,8 @@
-// entry.server.tsx
-
-import { logger } from "#app/utils/logger.server";
 import { PassThrough } from "node:stream";
 
 import { MuiProvider } from "#app/mui.provider";
 import { CssBaseline } from "@mui/material";
-import type {
-  ActionFunctionArgs,
-  AppLoadContext,
-  EntryContext,
-  HandleDataRequestFunction,
-  LoaderFunctionArgs,
-} from "@remix-run/node";
+import type { AppLoadContext, EntryContext } from "@remix-run/node";
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
@@ -29,14 +20,7 @@ export default function handleRequest(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loadContext: AppLoadContext,
 ) {
-  const { method, url } = request;
-  logger.info(`Started ${method} ${url}`);
-  const start = Date.now();
-
-  const userAgent = request.headers.get("user-agent") || "";
-  const isBotRequest = isbot(userAgent);
-
-  const handlePromise = isBotRequest
+  return isbot(request.headers.get("user-agent") || "")
     ? handleBotRequest(
         request,
         responseStatusCode,
@@ -49,21 +33,6 @@ export default function handleRequest(
         responseHeaders,
         remixContext,
       );
-
-  return handlePromise
-    .then((response) => {
-      const duration = Date.now() - start;
-      const statusCode = response.status;
-      logger.info(
-        `Completed ${method} ${url} with status ${statusCode} in ${duration}ms`,
-      );
-      return response;
-    })
-    .catch((error) => {
-      const duration = Date.now() - start;
-      logger.error(`Error on ${method} ${url} after ${duration}ms: ${error}`);
-      throw error;
-    });
 }
 
 function handleBotRequest(
@@ -71,7 +40,7 @@ function handleBotRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-): Promise<Response> {
+) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
@@ -102,11 +71,11 @@ function handleBotRequest(
         },
         onError(error: unknown) {
           responseStatusCode = 500;
-          // Log streaming rendering errors from inside the shell. Don't log
+          // Log streaming rendering errors from inside the shell.  Don't log
           // errors encountered during initial shell rendering since they'll
           // reject and get logged in handleDocumentRequest.
           if (shellRendered) {
-            logger.error(`Streaming error in handleBotRequest: ${error}`);
+            console.error(error);
           }
         },
       },
@@ -121,7 +90,7 @@ function handleBrowserRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-): Promise<Response> {
+) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
@@ -155,11 +124,11 @@ function handleBrowserRequest(
         },
         onError(error: unknown) {
           responseStatusCode = 500;
-          // Log streaming rendering errors from inside the shell. Don't log
+          // Log streaming rendering errors from inside the shell.  Don't log
           // errors encountered during initial shell rendering since they'll
           // reject and get logged in handleDocumentRequest.
           if (shellRendered) {
-            logger.error(`Streaming error in handleBrowserRequest: ${error}`);
+            console.error(error);
           }
         },
       },
@@ -167,37 +136,4 @@ function handleBrowserRequest(
 
     setTimeout(abort, ABORT_DELAY);
   });
-}
-// 新しく追加：handleDataRequest の実装
-export const handleDataRequest: HandleDataRequestFunction = async (
-  response: Response | Promise<Response>,
-  { request },
-) => {
-  const { method, url } = request;
-  logger.info(`Data request started ${method} ${url}`);
-  const start = Date.now();
-
-  try {
-    const res = await response;
-    const duration = Date.now() - start;
-    const statusCode = res.status;
-    logger.info(
-      `Data request completed ${method} ${url} with status ${statusCode} in ${duration}ms`,
-    );
-    return res;
-  } catch (error) {
-    const duration = Date.now() - start;
-    logger.error(
-      `Data request error on ${method} ${url} after ${duration}ms: ${error}`,
-    );
-    throw error;
-  }
-};
-
-export function handleError(
-  error: unknown,
-  { request }: LoaderFunctionArgs | ActionFunctionArgs,
-) {
-  const { method, url } = request;
-  logger.error(`handleError on ${method} ${url} : ${error}`);
 }
