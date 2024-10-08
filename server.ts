@@ -2,6 +2,7 @@ import { createRequestHandler } from "@remix-run/express";
 import { ServerBuild } from "@remix-run/node";
 import compression from "compression";
 import express from "express";
+import { performance } from "perf_hooks";
 import { logger } from "./app/utils/logger.server.js";
 
 const viteDevServer =
@@ -49,16 +50,16 @@ app.use(express.static("build/client", { maxAge: "1h" }));
 //app.use(morgan("tiny"));
 app.use((req, res, next) => {
   const { method, url } = req;
-  logger.info(`Started ${method} ${url}`);
+  logger.info(`Request started: ${method} ${url}`);
 
-  const start = Date.now();
+  const start = performance.now();
 
   // レスポンス終了時のイベントでログを出力
   res.on("finish", () => {
-    const duration = Date.now() - start;
+    const duration = performance.now() - start;
     const statusCode = res.statusCode;
     logger.info(
-      `Completed ${method} ${url} with status ${statusCode} in ${duration}ms`,
+      `Request completed: ${method} ${url} ${statusCode} - ${duration.toFixed(3)} ms`,
     );
   });
 
