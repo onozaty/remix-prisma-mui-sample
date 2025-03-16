@@ -44,7 +44,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@onozaty/prisma-db-comments-generator": "^1.0.1",
+    "@onozaty/prisma-db-comments-generator": "^1.1.0",
     "@quramy/prisma-fabbrica": "^2.2.1",
     "@remix-run/dev": "^2.12.0",
     "@remix-run/testing": "^2.12.0",

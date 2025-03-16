@@ -5,7 +5,7 @@ generator client {
 generator comments {
   provider                  = "prisma-db-comments-generator"
   ignorePattern             = "_view$"
-  includeEnumInFeildComment = true
+  includeEnumInFieldComment = true
 }
 
 generator fabbrica {
