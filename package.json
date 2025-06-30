@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@onozaty/prisma-db-comments-generator": "^1.3.0",
-    "@onozaty/prisma-schema-fixer": "^1.0.0",
+    "@onozaty/prisma-schema-fixer": "^1.1.1",
     "@quramy/prisma-fabbrica": "^2.2.1",
     "@remix-run/dev": "^2.12.0",
     "@remix-run/testing": "^2.12.0",
